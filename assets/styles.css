@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+a{
+    cursor: pointer;
+}
+@keyframes blink {
+    0%, 70% {
+        opacity: 1;
+    }
+    71%, 100% {
+        opacity: 0;
+    }
+}
+
+.hot-blink {
+    animation: blink 1.1s infinite;
+}
