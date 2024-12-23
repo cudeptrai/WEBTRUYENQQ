@@ -73,7 +73,7 @@
                     class="px-3 py-2 min-w-[125px] flex items-center justify-center rounded-sm gap-1 hover:opacity-90"
                     to="">
                     <Icon class="text-lg" name="ic:baseline-library-books" />
-                    <div>Đọc từ đầu</div>
+                    <div><NuxtLink :to="'/truyen/'+details.slug+'/'+ details.episodes[details.episodes.length-1].slug">Đọc từ đầu</NuxtLink> </div>
                   </NuxtLink>
                   <NuxtLink style="background-color: #ff3860;"
                     class="px-3 py-2 min-w-[125px] flex items-center justify-center rounded-sm gap-1 hover:opacity-90"
@@ -103,8 +103,8 @@
               Giới Thiệu
             </div>
           </div>
-          <div class="flex gap-1 items-center">.
-            {{ details.desc }}
+          <div class="flex gap-1 items-center">
+            {{ details.meta_desc }}
           </div>
           <div class="flex gap-1 items-center py-2 mt-5">
             <Icon class="text-2xl" name="material-symbols-light:database" />
@@ -116,7 +116,7 @@
             <div class="p-4 max-h-96 overflow-y-auto">
               <div v-for="(item, index) in details.episodes" :key="index" class="py-1">
                 <div class="flex justify-between border-b pb-1">
-                  <NuxtLink>{{ item.name }}</NuxtLink>
+                  <NuxtLink :to="'/truyen/'+details.slug+'/'+ details.episodes[0].slug">{{ item.name }}</NuxtLink>
                   <div>{{ item.update_time }}</div>
                 </div>
               </div>

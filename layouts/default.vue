@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen flex flex-col text-white">
-    <header class="h-[120px]">
-      <div class="bg-bg-primary">
+    <header class="h-[120px] fixed top-0 left-0 w-full z-50">
+      <div class="bg-bg-primary h-[62px]">
         <div class="px-2">
           <div class="py-3 container mx-auto max-w-5xl">
-            <div class="grid grid-cols-12 items-center">
+            <div class="lg:grid grid-cols-12 items-center hidden">
               <div class="col-span-4">
                 <NuxtLink to="/">
                   <NuxtImg alt="logo" width="146" height="38" src="images/logo.png" />
@@ -51,12 +51,26 @@
                 </div>
               </div>
             </div>
+            <div class="lg:hidden grid grid-cols-12 items-center gap-4">
+              <div class="col-span-4">
+                <NuxtLink to="/">
+                  <NuxtImg alt="logo" width="146" height="38" src="images/logo.png" />
+                </NuxtLink>
+              </div>
+              <div class="col-span-8">
+                <div class="relative">
+                  <input type="text" class="w-full py-2 rounded-full focus:outline-none pl-6"
+                    placeholder="Bạn muốn tìm truyện gì" style="background-color: #3a3b3c;">
+                  <Icon class="absolute top-3 font-medium right-3 text-xl" name="ion:search" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray">
+      <div class="bg-gray h-[58px] shadow-lg">
         <div class="container mx-auto max-w-5xl">
-          <ul class="flex lg:gap-10 cursor-pointer h-full">
+          <ul class="lg:flex hidden lg:gap-10 cursor-pointer">
             <li class="hover:bg-orange-500 py-4 px-2">
               <NuxtLink to="/">Trang Chủ</NuxtLink>
             </li>
@@ -82,10 +96,55 @@
               <NuxtLink to="/">Fanpage</NuxtLink>
             </li>
           </ul>
+          <div class="flex h-[58px] items-center justify-between px-2 block lg:hidden ">
+            <div class="text-lg font-medium ">
+              Trang Chủ
+            </div>
+            <div @click="toggleMenu" class="flex items-center">
+              <Icon v-if="!showMenu" class="text-2xl" name="fa6-solid:bars-staggered" />
+              <Icon v-else class="text-2xl" name="fa6-solid:xmark" />
+            </div>
+
+          </div>
+          <ul class="block lg:hidden":class="{ 'nav-menu': true, 'active': showMenu }">
+            <li class="py-4 px-2 relative">
+              <div to="/">Thể Loại</div>
+              <Icon class="absolute text-3xl top-3.5 left-[70px]" name="material-symbols:arrow-drop-down" />
+            </li>
+            <li @click="toggleMenu1()" class="py-4 px-2 relative">
+              <div to="/">Xếp hạng</div>
+              <Icon class="absolute text-3xl top-3.5 left-[75px]" name="material-symbols:arrow-drop-down" />
+              <ul :class="{ }">
+                <li class="pt-2 px-2">a</li>
+              </ul>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Con Gái</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Con Trai</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Tìm Truyện</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Lịch Sử</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Theo Dõi</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Thảo Luận</NuxtLink>
+            </li>
+            <li class="py-4 px-2">
+              <NuxtLink to="/">Fanpage</NuxtLink>
+            </li>
+          </ul>
         </div>
+
       </div>
     </header>
-    <main class="flex-grow bg-bg-primary">
+    <main class="flex-grow bg-bg-primary pt-[120px]">
       <div class="px-2">
         <slot />
       </div>
@@ -127,7 +186,15 @@
 
 </template>
 
-<script lang="ts" setup>
+<script setup>
+const showMenu = ref(false);
+const showMenuXH = ref(true);
+function toggleMenu1() {
+  showMenuXH.value = !showMenuXH.value;
+}
+function toggleMenu() {
+  showMenu.value = !showMenu.value;
+}
 const ListMenu = [
   { name: 'Action' },
   { name: 'Detective' },

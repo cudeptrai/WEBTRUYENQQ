@@ -5,7 +5,7 @@
         <Icon class="text-3xl text-red" name="ic:round-star" />
         <div class="text-2xl text-red font-bold">Truyện Hay</div>
       </div>
-      <div class="mt-3 ">
+      <div class="mt-3">
         <ProductSlide :data="highlightProducts" />
       </div>
       <div class="flex items-center gap-1 my-5">
@@ -43,7 +43,7 @@ const loadData = async () => {
     const response = await fetch(config.public.apiBase + '/get-data-home')
     const data = await response.json()
     highlightProducts.value = data.highlightProducts
-    newProducts.value = data.newProducts
+    newProducts.value = data.newUpdatedProducts
     console.log(data.highlightProducts);
   } catch (error) {
     console.log(error)
